@@ -10,13 +10,15 @@ export const requestValidator: <T, A>(decoder: D.Decoder<T, A>) => RequestHandle
     decoder.decode(req.body),
     fold(
       (errors) => res.status(400).send({ code: 'BadArgument', status: 'error', error: D.draw(errors) }),
-      () => next(),
-    ),
+      () => next()
+    )
   );
 };
 
 export const responseValidator = (req: Request, res: Response, next: NextFunction) => {
   const decoder: D.Decoder<unknown, string> = res.locals.decoder;
+
+  if (!decoder) next();
 
   return pipe(
     decoder.decode(res.locals.responseData),
@@ -24,7 +26,7 @@ export const responseValidator = (req: Request, res: Response, next: NextFunctio
       (errors) => res.status(500).send({ code: 'InternalServerError', status: 'error', error: D.draw(errors) }),
       () => {
         res.send(res.locals.responseData);
-      },
-    ),
+      }
+    )
   );
 };
