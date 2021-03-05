@@ -1,6 +1,6 @@
 import got from 'got';
-import * as exampleTypes from '../../routes/messages/exampleTypes';
-import { validateRequest, validateResponse } from '../../utils/helpers';
+import * as exampleTypes from './model';
+import { validateRequest, validateResponse } from '../../../utils/validationHelper';
 
 export const createExamples = async (exampleText: string, userId: number) => {
   const requestBody = { exampleText, userId };

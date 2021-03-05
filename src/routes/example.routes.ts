@@ -1,10 +1,13 @@
 import { Application, Router, Request, Response, NextFunction } from 'express';
 import * as exampleController from '../controllers/example.controller';
-import { requestValidator, responseValidator } from '../utils/middleware';
-import * as exampleTypes from '../routes/messages/exampleTypes';
+import { requestValidator, responseValidator, structureRequest } from '../utils/middleware';
+import * as exampleTypes from './messages/model';
 
 export default (app: Application) => {
   var router = Router();
+
+  app.use(structureRequest);
+
   app.use('/api/examples', router);
 
   router.post('/', requestValidator(exampleTypes.gatewayCreateExampleRequestDec), exampleController.create);

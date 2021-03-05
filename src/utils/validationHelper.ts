@@ -6,18 +6,18 @@ const validate = <T, A>(decoder: D.Decoder<T, A>, object: T, errorMessage: strin
   return pipe(
     decoder.decode(object),
     fold(
-      (errors) => {
-        throw { response: { body: `${errorMessage} ${D.draw(errors)}` } };
+      errors => {
+        throw `${errorMessage} ${D.draw(errors)}`;
       },
-      () => {},
-    ),
+      () => {}
+    )
   );
 };
 
 export const validateRequest = <T, A>(decoder: D.Decoder<T, A>, object: T) => {
-  validate(decoder, object, 'Error in request body:');
+  validate(decoder, object, 'Error validating request:');
 };
 
 export const validateResponse = <T, A>(decoder: D.Decoder<T, A>, object: T) => {
-  validate(decoder, object, 'Error in response body:');
+  validate(decoder, object, 'Error validating response:');
 };
