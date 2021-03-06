@@ -22,3 +22,14 @@ export const findAll = (req: Request, res: Response) => {
     }
   })();
 };
+
+export const autoComplete = (req: Request, res: Response) => {
+  (async () => {
+    try {
+      const response = await exampleClient.autocompleteExample(req.query.queryText as string, req.query.size as string);
+      res.send(response);
+    } catch (error) {
+      res.status(500).send({ code: 'InternalServerError', status: 'Error' });
+    }
+  })();
+};

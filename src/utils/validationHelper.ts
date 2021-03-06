@@ -7,6 +7,7 @@ const validate = <T, A>(decoder: D.Decoder<T, A>, object: T, errorMessage: strin
     decoder.decode(object),
     fold(
       errors => {
+        console.log(`${errorMessage} ${D.draw(errors)}`);
         throw `${errorMessage} ${D.draw(errors)}`;
       },
       () => {}

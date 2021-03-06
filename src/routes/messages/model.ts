@@ -1,4 +1,5 @@
 import * as D from 'io-ts/lib/Decoder';
+import { pipe } from 'fp-ts/function';
 
 const emptyRequest = D.type({});
 
@@ -14,6 +15,19 @@ const exampleResponse = D.type({
   exampleText: D.string,
   createdBy: D.number,
 });
+
+export const gatewayExampleRequestDec = pipe(
+  D.type({
+    query: D.type({
+      queryText: D.string,
+    }),
+  }),
+  D.intersect(
+    D.partial({
+      size: D.string,
+    })
+  )
+);
 
 export const gatewayCreateExampleRequestDec = createExampleRequest;
 export const gatewayCreateExampleResponseDec = exampleResponse;

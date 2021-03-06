@@ -1,4 +1,5 @@
 import * as D from 'io-ts/lib/Decoder';
+import { pipe } from 'fp-ts/function';
 
 const emptyRequest = D.type({});
 
@@ -18,3 +19,18 @@ export const bcCreateExampleResponseDec = exampleResponse;
 
 export const bcGetExmaplesRequestDec = emptyRequest;
 export const bcGetExamplesResponseDec = D.array(exampleResponse);
+
+export const bcExampleRequestDec = pipe(
+  D.type({
+    query: D.type({
+      queryText: D.string,
+    }),
+  }),
+  D.intersect(
+    D.partial({
+      size: D.string,
+    })
+  )
+);
+
+export const bcExampleResponseDec = D.type({ exampleSuggestions: D.array(D.string) });

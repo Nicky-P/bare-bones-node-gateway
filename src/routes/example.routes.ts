@@ -14,6 +14,8 @@ export default (app: Application) => {
 
   router.get('/', requestValidator(exampleTypes.gatewayGetExmaplesRequestDec), exampleController.findAll);
 
+  router.get('/es/example-suggestion', requestValidator(exampleTypes.gatewayExampleRequestDec), exampleController.autoComplete);
+
   app.use(responseValidator);
 
   app.use(function (req: Request, res: Response, next: NextFunction) {
