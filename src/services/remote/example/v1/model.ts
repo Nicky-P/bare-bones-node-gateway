@@ -20,7 +20,7 @@ export const bcCreateExampleResponseDec = exampleResponse;
 export const bcGetExmaplesRequestDec = emptyRequest;
 export const bcGetExamplesResponseDec = D.array(exampleResponse);
 
-export const bcExampleRequestDec = pipe(
+export const bcExampleSuggestionsRequestDec = pipe(
   D.type({
     query: D.type({
       queryText: D.string,
@@ -33,4 +33,4 @@ export const bcExampleRequestDec = pipe(
   )
 );
 
-export const bcExampleResponseDec = D.type({ exampleSuggestions: D.array(D.string) });
+export const bcExampleSuggestionsResponseDec = D.type({ exampleSuggestions: D.array(D.string) });

@@ -16,7 +16,7 @@ const exampleResponse = D.type({
   createdBy: D.number,
 });
 
-export const gatewayExampleRequestDec = pipe(
+export const gatewayEsExampleRequestDec = pipe(
   D.type({
     query: D.type({
       queryText: D.string,
@@ -34,3 +34,5 @@ export const gatewayCreateExampleResponseDec = exampleResponse;
 
 export const gatewayGetExmaplesRequestDec = emptyRequest;
 export const gatewayGetExamplesResponseDec = D.array(exampleResponse);
+
+export const gatewayEsExampleResponseDec = D.type({ exampleSuggestions: D.array(D.string) });

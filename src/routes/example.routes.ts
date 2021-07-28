@@ -8,13 +8,13 @@ export default (app: Application) => {
 
   app.use(structureRequest);
 
-  app.use('/api/examples', router);
+  app.use('/api', router);
 
-  router.post('/', requestValidator(exampleTypes.gatewayCreateExampleRequestDec), exampleController.create);
+  router.post('/v1/examples/', requestValidator(exampleTypes.gatewayCreateExampleRequestDec), exampleController.create);
 
-  router.get('/', requestValidator(exampleTypes.gatewayGetExmaplesRequestDec), exampleController.findAll);
+  router.get('/v1/examples/', requestValidator(exampleTypes.gatewayGetExmaplesRequestDec), exampleController.findAll);
 
-  router.get('/es/example-suggestion', requestValidator(exampleTypes.gatewayExampleRequestDec), exampleController.autoComplete);
+  router.get('/v1/es/example-suggestion', requestValidator(exampleTypes.gatewayEsExampleRequestDec), exampleController.autoComplete);
 
   app.use(responseValidator);
 

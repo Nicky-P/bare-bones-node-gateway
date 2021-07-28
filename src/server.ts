@@ -1,21 +1,17 @@
 import express, { Application } from 'express';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import exmapleRoutes from './routes/example.routes';
+import { port } from './config';
 
 const app: Application = express();
 
-var corsOptions = {
-  origin: 'http://localhost:8081',
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json());
+app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // simple route
 app.get('/', (req, res) => {
@@ -24,8 +20,6 @@ app.get('/', (req, res) => {
 
 exmapleRoutes(app);
 
-// set port, listen for requests
-const PORT = process.env.PORT || 8082;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}.`);
 });

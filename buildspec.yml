@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Install Node 14 and npm...
+      - curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+      - apt install -y nodejs
+  pre_build:
+    commands:
+      - echo Installing dependencies...
+      - npm install
+  build:
+    commands:
+      - echo Building...
+      - npm run build
+  post_build:
+    commands:
+      - echo Cleaning up...
+      - rm -rf node_modules
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: no
+  base-directory: ./
