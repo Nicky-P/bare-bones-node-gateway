@@ -28,11 +28,10 @@ export const gatewayEsExampleRequestDec = pipe(
     })
   )
 );
+export const gatewayEsExampleResponseDec = D.type({ exampleSuggestions: D.array(D.string) });
 
 export const gatewayCreateExampleRequestDec = createExampleRequest;
 export const gatewayCreateExampleResponseDec = exampleResponse;
 
 export const gatewayGetExmaplesRequestDec = emptyRequest;
 export const gatewayGetExamplesResponseDec = D.array(exampleResponse);
-
-export const gatewayEsExampleResponseDec = D.type({ exampleSuggestions: D.array(D.string) });
