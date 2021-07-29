@@ -1,6 +1,6 @@
 import got from 'got';
 import * as exampleTypes from './model';
-import { validateRequest, validateResponse } from '../../../../utils/validationHelper';
+import { validateRequest, validateResponse } from '../../../../utils/helpers';
 import { exampleBcUrl } from '../../../../config';
 
 export const createExamples = async (exampleText: string, userId: number) => {
